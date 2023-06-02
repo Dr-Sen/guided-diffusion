@@ -64,6 +64,17 @@ def main():
         assert y is not None
         return model(x, t, y if args.class_cond else None)
 
+    if args.diffusion_sampling_moded == 'ddim':
+        sample_fn = diffusion.ddim_sample_loop
+    elif args.diffusion_sampling_mode[:4] in ['plms','pndm']:
+        sample_fn = partial(diffusion.plms_sample_loop, order=int(args.diffusion_sampling_mode[4]))
+    elif args.diffusion_sampling_mode[:4] in ['ltsp','ours','ltts']:
+        sample_fn = partial(diffusion.ltsp_sample_loop, order=int(args.diffusion_sampling_mode[4]))
+    elif args.diffusion_sampling_mode[:4] in ['stsp','bchf']:
+        sample_fn = partial(diffusion.stsp_sample_loop, order=int(args.diffusion_sampling_mode[4]))
+    else:
+        sample_fn = diffusion.p_sample_loop
+        
     logger.log("sampling...")
     all_images = []
     all_labels = []
