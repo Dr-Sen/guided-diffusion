@@ -82,6 +82,8 @@ def main():
             clip_denoised=args.clip_denoised,
             model_kwargs=model_kwargs,
             cond_fn=cond_fn,
+            impu_fn=None,
+            progress=True,
             device=dist_util.dev(),
         )
         sample = ((sample + 1) * 127.5).clamp(0, 255).to(th.uint8)
