@@ -72,8 +72,7 @@ def main():
         sample_fn = partial(diffusion.ltsp_sample_loop, order=int(args.diffusion_sampling_mode[4]))
     elif args.diffusion_sampling_mode[:4] in ['stsp','bchf']:
         sample_fn = partial(diffusion.stsp_sample_loop, order=int(args.diffusion_sampling_mode[4]))
-    else:
-        sample_fn = diffusion.p_sample_loop
+
         
     logger.log("sampling...")
     all_images = []
