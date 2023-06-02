@@ -766,7 +766,6 @@ class GaussianDiffusion:
         clip_denoised=True,
         denoised_fn=None,
         cond_fn=None,
-        impu_fn=None,
         model_kwargs=None,
         eta=0.0,
         inpainting_mode=False,
@@ -833,7 +832,6 @@ class GaussianDiffusion:
         clip_denoised=True,
         denoised_fn=None,
         cond_fn=None,
-        impu_fn=None,
         model_kwargs=None,
         eta=0.0,
     ):
